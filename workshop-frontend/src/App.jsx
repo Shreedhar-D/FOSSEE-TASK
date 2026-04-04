@@ -8,6 +8,8 @@ import WorkshopListPage from "./pages/WorkshopListPage";
 import WorkshopDetailsPage from "./pages/WorkshopDetailsPage";
 import StatisticsPage from "./pages/StatisticsPage";
 import HomePage from "./pages/HomePage";
+import ProfilePage from "./pages/ProfilePage";
+import ProposePage from "./pages/ProposePage";
 
 export default function App() {
   return (
@@ -47,11 +49,31 @@ export default function App() {
           }
         />
         <Route
+          path="/workshop/propose"
+          element={
+            <PrivateRoute>
+              <Layout>
+                <ProposePage />
+              </Layout>
+            </PrivateRoute>
+          }
+        />
+        <Route
           path="/statistics/public"
           element={
             <PrivateRoute>
               <Layout>
                 <StatisticsPage />
+              </Layout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <Layout>
+                <ProfilePage />
               </Layout>
             </PrivateRoute>
           }
