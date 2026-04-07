@@ -4,6 +4,11 @@ from django.forms import inlineformset_factory, model_to_dict
 from django.http import JsonResponse, Http404
 from django.urls import reverse
 
+# lib for api views
+import json
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
+
 try:
     from StringIO import StringIO as string_io
 except ImportError:
@@ -500,3 +505,141 @@ def view_own_profile(request):
 
     return render(request, "workshop_app/view_profile.html",
                   {"profile": profile, "Workshops": None, "form": form})
+
+
+# API Views for React Frontend 
+@csrf_exempt
+@require_http_methods(["POST"])
+def api_login(request):
+    """API Login - returns user data"""
+    try:
+        data = json.loads(request.body)
+        username = data.get('username')
+        password = data.get('password')
+        user = authenticate(username=username, password=password)
+        if user and user.profile.is_email_verified:
+            login(request, user)
+            return JsonResponse({
+                'success': True,
+                'user': {
+                    'id': user.id,
+                    'username': user.username,
+                    'email': user.email,
+                    'first_name': user.first_name,
+                    'last_name': user.last_name,
+                    'is_instructor': is_instructor(user),
+                }
+            })
+        return JsonResponse({'success': False, 'error': 'Invalid credentials'}, status=400)
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)}, status=400)
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def api_logout(request):
+    """API Logout"""
+    logout(request)
+    return JsonResponse({'success': True})
+
+
+def api_user(request):
+    """Get current logged in user"""
+    if request.user.is_authenticated:
+        user = request.user
+        return JsonResponse({
+            'success': True,
+            'user': {
+                'id': user.id,
+                'username': user.username,
+                'email': user.email,
+                'first_name': user.first_name,
+                'last_name': user.last_name,
+                'is_instructor': is_instructor(user),
+            }
+        })
+    return JsonResponse({'success': False, 'error': 'Not authenticated'}, status=401)
+
+
+@login_required
+def api_workshops(request):
+    """Get list of workshops"""
+    user = request.user
+    if is_instructor(user):
+        today = timezone.now().date()
+        workshops = Workshop.objects.filter(
+            Q(instructor=user.id, date__gte=today) | Q(status=0)
+        ).order_by('-date')
+    else:
+        workshops = Workshop.objects.filter(
+            coordinator=user.id
+        ).order_by('-date')
+
+    data = []
+    for w in workshops:
+        data.append({
+            'id': w.id,
+            'title': w.workshop_type.name,
+            'date': str(w.date),
+            'status': w.status,
+            'instructor': w.instructor.get_full_name() if w.instructor else None,
+            'coordinator': w.coordinator.get_full_name() if w.coordinator else None,
+        })
+    return JsonResponse({'success': True, 'workshops': data})
+
+
+@login_required
+def api_workshop_detail(request, workshop_id):
+    """Get single workshop detail"""
+    try:
+        workshop = Workshop.objects.get(id=workshop_id)
+        comments = Comment.objects.filter(workshop=workshop, public=True)
+        comments_data = [{
+            'id': c.id,
+            'comment': c.comment,
+            'author': c.author.get_full_name(),
+            'created_date': str(c.created_date),
+        } for c in comments]
+
+        return JsonResponse({
+            'success': True,
+            'workshop': {
+                'id': workshop.id,
+                'title': workshop.workshop_type.name,
+                'date': str(workshop.date),
+                'status': workshop.status,
+                'instructor': workshop.instructor.get_full_name() if workshop.instructor else None,
+                'coordinator': workshop.coordinator.get_full_name(),
+                'comments': comments_data,
+            }
+        })
+    except Workshop.DoesNotExist:
+        return JsonResponse({'success': False, 'error': 'Workshop not found'}, status=404)
+
+
+@csrf_exempt
+@login_required
+@require_http_methods(["POST"])
+def api_propose_workshop(request):
+    """Propose a new workshop"""
+    try:
+        data = json.loads(request.body)
+        workshop_type = WorkshopType.objects.get(id=data.get('workshop_type'))
+        date = data.get('date')
+
+        if Workshop.objects.filter(
+            date=date,
+            workshop_type=workshop_type,
+            coordinator=request.user
+        ).exists():
+            return JsonResponse({'success': False, 'error': 'Workshop already exists for this date'}, status=400)
+
+        workshop = Workshop.objects.create(
+            workshop_type=workshop_type,
+            date=date,
+            coordinator=request.user,
+            tnc_accepted=True
+        )
+        return JsonResponse({'success': True, 'workshop_id': workshop.id})
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)}, status=400)
