@@ -38,6 +38,9 @@ export default function Navbar() {
           </>
         ) : (
           <>
+            <Link to="/statistics/public" className="hover:underline">
+              Workshop Statistics
+            </Link>
             <Link to="/login" className="hover:underline">
               Login
             </Link>

@@ -61,11 +61,9 @@ export default function App() {
         <Route
           path="/statistics/public"
           element={
-            <PrivateRoute>
-              <Layout>
-                <StatisticsPage />
-              </Layout>
-            </PrivateRoute>
+            <Layout>
+              <StatisticsPage />
+            </Layout>
           }
         />
         <Route

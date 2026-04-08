@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../services/api";
 import { showError } from "../utils/notifications";
+import LoadingSpinner from "../components/Common/LoadingSpinner";
 
 export default function StatisticsPage() {
   const [statistics, setStatistics] = useState(null);
@@ -22,12 +23,14 @@ export default function StatisticsPage() {
   };
 
   if (loading) {
-    return <div className="text-center py-8">Loading statistics...</div>;
+    return <LoadingSpinner />;
   }
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-6 text-blue-600">Statistics</h1>
+      <h1 className="text-3xl font-bold mb-6 text-[rgb(23,162,184)]">
+        Statistics
+      </h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-white rounded-lg shadow-md p-6 text-center">
           <h2 className="text-4xl font-bold text-blue-600">
