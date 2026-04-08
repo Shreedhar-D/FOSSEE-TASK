@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import api from "../services/api";
 import { showError } from "../utils/notifications";
 import WorkshopCard from "../components/Cards/WorkshopCard";
+import LoadingSpinner from "../components/Common/LoadingSpinner";
 
 export default function WorkshopListPage() {
   const [workshops, setWorkshops] = useState([]);
@@ -26,12 +27,12 @@ export default function WorkshopListPage() {
   };
 
   if (loading) {
-    return <div className="text-center py-8">Loading workshops...</div>;
+    return <LoadingSpinner />;
   }
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-6 text-blue-600">Workshops</h1>
+      <h1 className="text-3xl font-bold mb-6 text-[rgb(23,162,184)]">Workshops</h1>
       {workshops.length === 0 ? (
         <p className="text-gray-500">No workshops found.</p>
       ) : (
