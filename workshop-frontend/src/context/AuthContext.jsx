@@ -10,10 +10,6 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  useEffect(() => {
-    checkAuth();
-  }, []);
-
   // updating checkAuth, acc to the API response structure
   const checkAuth = async () => {
     try {
@@ -29,6 +25,10 @@ export function AuthProvider({ children }) {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    checkAuth();
+  }, []);
 
   // updating login to handle API response correctly
   const login = async (credentials) => {

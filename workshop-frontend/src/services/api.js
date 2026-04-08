@@ -17,7 +17,11 @@ api.interceptors.response.use(
     (response) => response,
     (error) => {
         if (error.response?.status === 401) {
-            window.location.href = "/login";
+            // Only redirect if not already on public pages
+            const publicPages = ["/login", "/register"];
+            if (!publicPages.some(p => window.location.pathname === p)) {
+                window.location.href = "/login";
+            }
         }
         return Promise.reject(error);
     },
