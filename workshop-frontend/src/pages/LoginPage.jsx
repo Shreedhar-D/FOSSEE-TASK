@@ -28,8 +28,8 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white p-4 md:p-8 rounded-lg shadow-md w-full max-w-md mx-auto">
         <h2 className="text-2xl font-bold text-center mb-6 text-blue-600">
           Login
         </h2>
@@ -41,7 +41,7 @@ export default function LoginPage() {
               name="username"
               value={formData.username}
               onChange={handleChange}
-              className="w-full border rounded-lg p-3 focus:outline-none focus:border-blue-500"
+              className="w-full border rounded-lg p-4 focus:outline-none focus:border-blue-500"
               required
             />
           </div>
@@ -52,14 +52,14 @@ export default function LoginPage() {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className="w-full border rounded-lg p-3 focus:outline-none focus:border-blue-500"
+              className="w-full border rounded-lg p-4 focus:outline-none focus:border-blue-500"
               required
             />
           </div>
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 disabled:opacity-50"
+            className="w-full bg-blue-600 text-white py-4 rounded-lg hover:bg-blue-700 disabled:opacity-50"
           >
             {loading ? "Logging in..." : "Login"}
           </button>
