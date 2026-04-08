@@ -13,9 +13,9 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-blue-600 text-white px-6 py-4 flex justify-between items-center">
+    <nav className="bg-[rgb(59,68,75)] text-white px-6 py-4 flex justify-between items-center">
       <Link to="/" className="text-xl font-bold">
-        Workshop Portal
+        FOSSEE Workshops
       </Link>
       <div className="flex gap-4 items-center">
         {isAuthenticated ? (

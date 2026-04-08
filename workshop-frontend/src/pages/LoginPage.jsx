@@ -30,7 +30,7 @@ export default function LoginPage() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-4 md:p-8 rounded-lg shadow-md w-full max-w-md mx-auto">
-        <h2 className="text-2xl font-bold text-center mb-6 text-blue-600">
+        <h2 className="text-2xl font-bold text-center mb-6 text-[rgb(23,162,184)]">
           Login
         </h2>
         <form onSubmit={handleSubmit}>
@@ -59,14 +59,14 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 text-white py-4 rounded-lg hover:bg-blue-700 disabled:opacity-50"
+            className="w-full bg-blue-500 text-white py-4 rounded-lg hover:bg-blue-600 disabled:opacity-50"
           >
             {loading ? "Logging in..." : "Login"}
           </button>
         </form>
         <p className="text-center mt-4 text-gray-600">
           Don't have an account?{" "}
-          <Link to="/register" className="text-blue-600 hover:underline">
+          <Link to="/register" className="text-[rgb(23,162,184)] hover:underline">
             Register
           </Link>
         </p>
