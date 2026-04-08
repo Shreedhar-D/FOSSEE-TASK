@@ -15,8 +15,10 @@ export default function WorkshopDetailsPage() {
 
   const fetchWorkshop = async () => {
     try {
-      const response = await api.get(`/workshops/${id}/`);
-      setWorkshop(response.data);
+      const response = await api.get(`/api/workshop/${id}/`);
+      if (response.data.success) {
+        setWorkshop(response.data.workshop); // Extract workshops
+      }
     } catch (error) {
       showError("Failed to load workshop details");
     } finally {
@@ -35,23 +37,45 @@ export default function WorkshopDetailsPage() {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-8 max-w-3xl mx-auto">
+    <div className="max-w-3xl mx-auto py-8 px-4">
       <button
         onClick={() => navigate("/workshops")}
-        className="text-blue-600 hover:underline mb-4 block"
+        className="text-amber-500 hover:underline mb-6"
       >
         ← Back to Workshops
       </button>
-      <h1 className="text-3xl font-bold text-blue-600 mb-4">
-        {workshop.title}
-      </h1>
-      <p className="text-gray-600 mb-6">{workshop.description}</p>
-      <div className="border-t pt-4">
-        <p className="text-gray-500 mb-2">📅 Date: {workshop.date}</p>
-        <p className="text-gray-500 mb-2">
-          👤 Instructor: {workshop.instructor}
-        </p>
-        <p className="text-gray-500 mb-2">📍 Location: {workshop.location}</p>
+
+      <div className="bg-gray-800 rounded-lg p-8 text-white">
+        <h1 className="text-3xl font-bold text-amber-500 mb-4">
+          {workshop.title}
+        </h1>
+
+        <div className="border-b border-gray-700 pb-4 mb-6">
+          <p className="mb-2">📅 Date: {workshop.date}</p>
+          <p className="mb-2">
+            👤 Instructor: {workshop.instructor || "Not assigned"}
+          </p>
+          <p className="mb-2">
+            Status: {workshop.status === 0 ? "Pending" : "Confirmed"}
+          </p>
+        </div>
+
+        {workshop.comments && workshop.comments.length > 0 && (
+          <div>
+            <h3 className="text-xl font-bold text-amber-500 mb-4">Comments</h3>
+            <div className="space-y-4">
+              {workshop.comments.map((comment) => (
+                <div key={comment.id} className="bg-gray-700 p-4 rounded">
+                  <p className="text-sm text-amber-500">{comment.author}</p>
+                  <p className="mt-2">{comment.comment}</p>
+                  <p className="text-xs text-gray-400 mt-2">
+                    {comment.created_date}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

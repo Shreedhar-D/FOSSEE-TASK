@@ -11,10 +11,13 @@ export default function WorkshopListPage() {
     fetchWorkshops();
   }, []);
 
+  // Fetch workshops from the API
   const fetchWorkshops = async () => {
     try {
-      const response = await api.get("/workshops/");
-      setWorkshops(response.data);
+      const response = await api.get("/api/workshops/");
+      if (response.data.success) {
+        setWorkshops(response.data.workshops); // extract workshops
+      }
     } catch (error) {
       showError("Failed to load workshops");
     } finally {
