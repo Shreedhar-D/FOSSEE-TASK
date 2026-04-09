@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../services/api";
 import { showError } from "../utils/notifications";
+import LoadingSpinner from "../components/Common/LoadingSpinner";
 
 export default function WorkshopDetailsPage() {
   const { id } = useParams();
@@ -27,7 +28,7 @@ export default function WorkshopDetailsPage() {
   };
 
   if (loading) {
-    return <div className="text-center py-8">Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   if (!workshop) {
@@ -37,38 +38,49 @@ export default function WorkshopDetailsPage() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto py-8 px-4">
+    <div className="max-w-3xl mx-auto py-8 px-4 md:px-6">
       <button
         onClick={() => navigate("/workshops")}
-        className="text-amber-500 hover:underline mb-6"
+        className="text-[rgb(23,162,184)] hover:underline mb-6 text-sm md:text-base"
       >
         ← Back to Workshops
       </button>
 
-      <div className="bg-gray-800 rounded-lg p-8 text-white">
-        <h1 className="text-3xl font-bold text-amber-500 mb-4">
+      <div className="bg-white rounded-lg p-4 md:p-8 shadow-md">
+        <h1 className="text-3xl font-bold text-[rgb(23,162,184)] mb-4 text-gray-800">
           {workshop.title}
         </h1>
 
-        <div className="border-b border-gray-700 pb-4 mb-6">
-          <p className="mb-2">📅 Date: {workshop.date}</p>
-          <p className="mb-2">
-            👤 Instructor: {workshop.instructor || "Not assigned"}
-          </p>
-          <p className="mb-2">
-            Status: {workshop.status === 0 ? "Pending" : "Confirmed"}
-          </p>
+        <div className="border-b border-gray-300 pb-4 mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <p className="mb-2 text-gray-700">📅 Date: {workshop.date}</p>
+            <p className="mb-2 text-gray-700">
+              👤 Instructor: {workshop.instructor || "Not assigned"}
+            </p>
+          </div>
+          <div>
+            <p className="mb-2 text-gray-700">
+              Status: {workshop.status === 0 ? "Pending" : "Confirmed"}
+            </p>
+          </div>
         </div>
 
         {workshop.comments && workshop.comments.length > 0 && (
           <div>
-            <h3 className="text-xl font-bold text-amber-500 mb-4">Comments</h3>
+            <h3 className="text-xl font-bold text-[rgb(23,162,184)] mb-4">
+              Comments
+            </h3>
             <div className="space-y-4">
               {workshop.comments.map((comment) => (
-                <div key={comment.id} className="bg-gray-700 p-4 rounded">
-                  <p className="text-sm text-amber-500">{comment.author}</p>
-                  <p className="mt-2">{comment.comment}</p>
-                  <p className="text-xs text-gray-400 mt-2">
+                <div
+                  key={comment.id}
+                  className="bg-gray-100 p-4 rounded-lg border border-gray-300"
+                >
+                  <p className="text-sm font-semibold text-[rgb(23,162,184)]">
+                    {comment.author}
+                  </p>
+                  <p className="mt-2 text-gray-700">{comment.comment}</p>
+                  <p className="text-xs text-gray-500 mt-2">
                     {comment.created_date}
                   </p>
                 </div>
