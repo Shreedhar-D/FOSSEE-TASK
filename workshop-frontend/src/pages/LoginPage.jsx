@@ -1,28 +1,29 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
-import { showSuccess, showError } from "../utils/notifications";
 import Layout from "../components/Navigation/Layout";
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(""); // Add error state
   const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setError(""); // Clear error when user types
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(""); // Clear previous errors
     setLoading(true);
     try {
       await login(formData);
-      showSuccess("Login successful!");
       navigate("/");
     } catch (error) {
-      showError("Invalid username or password");
+      setError("Invalid username or password"); // Set error in state
     } finally {
       setLoading(false);
     }
@@ -35,6 +36,14 @@ export default function LoginPage() {
           <h2 className="text-2xl font-bold text-center mb-6 text-[rgb(23,162,184)]">
             Login
           </h2>
+
+          {/* Error message display */}
+          {error && (
+            <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+              {error}
+            </div>
+          )}
+
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label className="block text-gray-700 mb-2">Username</label>

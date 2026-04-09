@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Toaster from "./components/Common/Toaster";
 import PrivateRoute from "./components/Auth/PrivateRoute";
 import Layout from "./components/Navigation/Layout";
 import LoginPage from "./pages/LoginPage";
@@ -19,7 +18,6 @@ function AppRoutes() {
 
   return (
     <>
-      <Toaster />
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
