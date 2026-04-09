@@ -1,17 +1,14 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-/**
- * Hook to update document title based on current route
- * Maps route paths to descriptive page titles
- */
+
 export function usePageTitle() {
   const location = useLocation();
 
   useEffect(() => {
     const titleMap = {
       "/": "Home ",
-      "/workshops": "Workshops - FOSSEE Workshop Booking",
+      "/workshops": "Workshops",
       "/statistics/public": "Statistics",
       "/profile": "Profile",
       "/password-change": "Change Password",
