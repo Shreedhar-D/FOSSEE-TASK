@@ -9,6 +9,7 @@ import WorkshopDetailsPage from "./pages/WorkshopDetailsPage";
 import StatisticsPage from "./pages/StatisticsPage";
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
+import PasswordChangePage from "./pages/PasswordChangePage";
 import ProposePage from "./pages/ProposePage";
 
 export default function App() {
@@ -72,6 +73,16 @@ export default function App() {
             <PrivateRoute>
               <Layout>
                 <ProfilePage />
+              </Layout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/password-change"
+          element={
+            <PrivateRoute>
+              <Layout>
+                <PasswordChangePage />
               </Layout>
             </PrivateRoute>
           }
