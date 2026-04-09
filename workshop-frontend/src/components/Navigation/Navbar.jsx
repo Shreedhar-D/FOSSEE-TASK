@@ -4,7 +4,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { showSuccess } from "../../utils/notifications";
 
 export default function Navbar() {
-  const { isAuthenticated, user, logout } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
 
   const [menuOpen, setMenuOpen] = useState(false);
