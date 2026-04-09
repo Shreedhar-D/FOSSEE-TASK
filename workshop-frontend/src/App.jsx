@@ -11,10 +11,14 @@ import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
 import PasswordChangePage from "./pages/PasswordChangePage";
 import ProposePage from "./pages/ProposePage";
+import { usePageTitle } from "./hooks/usePageTitle";
 
-export default function App() {
+function AppRoutes() {
+  // Hook to update page title on route change
+  usePageTitle();
+
   return (
-    <Router>
+    <>
       <Toaster />
       <Routes>
         <Route path="/login" element={<LoginPage />} />
@@ -88,6 +92,14 @@ export default function App() {
           }
         />
       </Routes>
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <Router>
+      <AppRoutes />
     </Router>
   );
 }
