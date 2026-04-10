@@ -1,55 +1,24 @@
-import { useState, useEffect } from "react";
-import api from "../services/api";
-import { showError } from "../utils/notifications";
-import LoadingSpinner from "../components/Common/LoadingSpinner";
-
 export default function StatisticsPage() {
-  const [statistics, setStatistics] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchStatistics();
-  }, []);
-
-  const fetchStatistics = async () => {
-    try {
-      const response = await api.get("/statistics/");
-      setStatistics(response.data);
-    } catch (error) {
-      showError("Failed to load statistics");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  if (loading) {
-    return <LoadingSpinner />;
-  }
+  const statsUrl = "http://localhost:8000/statistics/public";
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold mb-6 text-[rgb(23,162,184)]">
-        Statistics
+    <div className="max-w-3xl mx-auto">
+      <h1 className="text-3xl font-bold mb-4 text-[rgb(23,162,184)]">
+        Workshop Statistics
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow-md p-6 text-center">
-          <h2 className="text-4xl font-bold text-blue-600">
-            {statistics?.total_workshops || 0}
-          </h2>
-          <p className="text-gray-500 mt-2">Total Workshops</p>
-        </div>
-        <div className="bg-white rounded-lg shadow-md p-6 text-center">
-          <h2 className="text-4xl font-bold text-green-600">
-            {statistics?.total_participants || 0}
-          </h2>
-          <p className="text-gray-500 mt-2">Total Participants</p>
-        </div>
-        <div className="bg-white rounded-lg shadow-md p-6 text-center">
-          <h2 className="text-4xl font-bold text-purple-600">
-            {statistics?.total_instructors || 0}
-          </h2>
-          <p className="text-gray-500 mt-2">Total Instructors</p>
-        </div>
+      <div className="bg-white rounded-lg shadow-md p-6 md:p-8 space-y-4">
+        <p className="text-gray-700 leading-7">
+          The full statistics dashboard is available in the existing workshop
+          portal view, including filters, charts, and download options.
+        </p>
+        <a
+          href={statsUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center justify-center rounded-lg bg-[rgb(23,162,184)] px-5 py-3 text-white font-semibold hover:opacity-90 transition"
+        >
+          Open Public Statistics
+        </a>
       </div>
     </div>
   );
