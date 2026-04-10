@@ -45,32 +45,36 @@ export default function LoginPage() {
           )}
 
           <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Username</label>
+            <div className="mb-5">
+              <label className="block text-gray-700 text-sm font-medium mb-2">
+                Username
+              </label>
               <input
                 type="text"
                 name="username"
                 value={formData.username}
                 onChange={handleChange}
-                className="w-full border rounded-lg p-4 focus:outline-none focus:border-blue-500"
+                className="w-full border rounded-lg px-4 py-3 min-h-12 focus:outline-none focus:border-blue-500 text-base"
                 required
               />
             </div>
             <div className="mb-6">
-              <label className="block text-gray-700 mb-2">Password</label>
+              <label className="block text-gray-700 text-sm font-medium mb-2">
+                Password
+              </label>
               <input
                 type="password"
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full border rounded-lg p-4 focus:outline-none focus:border-blue-500"
+                className="w-full border rounded-lg px-4 py-3 min-h-12 focus:outline-none focus:border-blue-500 text-base"
                 required
               />
             </div>
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-blue-500 text-white py-4 rounded-lg hover:bg-blue-600 disabled:opacity-50"
+              className="w-full bg-blue-500 text-white py-3 min-h-12 rounded-lg hover:bg-blue-600 disabled:opacity-50 font-medium text-base"
             >
               {loading ? "Logging in..." : "Login"}
             </button>
