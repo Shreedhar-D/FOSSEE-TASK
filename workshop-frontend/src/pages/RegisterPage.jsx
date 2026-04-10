@@ -28,6 +28,9 @@ export default function RegisterPage() {
   });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const fieldClass =
+    "w-full border rounded-lg px-4 py-3 min-h-12 text-base focus:outline-none focus:border-blue-500";
+  const labelClass = "block text-gray-700 text-sm font-medium mb-2";
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -76,74 +79,72 @@ export default function RegisterPage() {
   return (
     <Layout>
       <div className="flex items-center justify-center flex-1 bg-gray-100">
-        <div className="bg-white p-4 md:p-8 rounded-lg shadow-md w-full max-w-2xl mx-auto">
+        <div className="bg-white p-5 md:p-8 rounded-lg shadow-md w-full max-w-2xl mx-auto">
           <h2 className="text-2xl font-bold text-center mb-6 text-[rgb(23,162,184)]">
             Register
           </h2>
           <form onSubmit={handleSubmit}>
             {/* Username */}
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Username*</label>
+            <div className="mb-5">
+              <label className={labelClass}>Username*</label>
               <input
                 type="text"
                 name="username"
                 value={formData.username}
                 onChange={handleChange}
                 placeholder="Letters, digits, period and underscore only"
-                className="w-full border rounded-lg p-4 focus:outline-none focus:border-blue-500"
+                className={fieldClass}
                 required
               />
             </div>
 
             {/* Email */}
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Email*</label>
+            <div className="mb-5">
+              <label className={labelClass}>Email*</label>
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full border rounded-lg p-4 focus:outline-none focus:border-blue-500"
+                className={fieldClass}
                 required
               />
             </div>
 
             {/* Password */}
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Password*</label>
+            <div className="mb-5">
+              <label className={labelClass}>Password*</label>
               <input
                 type="password"
                 name="password1"
                 value={formData.password1}
                 onChange={handleChange}
-                className="w-full border rounded-lg p-4 focus:outline-none focus:border-blue-500"
+                className={fieldClass}
                 required
               />
             </div>
 
             {/* Confirm Password */}
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">
-                Confirm Password*
-              </label>
+            <div className="mb-5">
+              <label className={labelClass}>Confirm Password*</label>
               <input
                 type="password"
                 name="password2"
                 value={formData.password2}
                 onChange={handleChange}
-                className="w-full border rounded-lg p-4 focus:outline-none focus:border-blue-500"
+                className={fieldClass}
                 required
               />
             </div>
 
             {/* Title */}
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Title*</label>
+            <div className="mb-5">
+              <label className={labelClass}>Title*</label>
               <select
                 name="title"
                 value={formData.title}
                 onChange={handleChange}
-                className="w-full border rounded-lg p-4 focus:outline-none focus:border-blue-500"
+                className={fieldClass}
                 required
               >
                 <option value="">Select Title</option>
@@ -156,34 +157,34 @@ export default function RegisterPage() {
             </div>
 
             {/* First Name */}
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">First Name*</label>
+            <div className="mb-5">
+              <label className={labelClass}>First Name*</label>
               <input
                 type="text"
                 name="first_name"
                 value={formData.first_name}
                 onChange={handleChange}
-                className="w-full border rounded-lg p-4 focus:outline-none focus:border-blue-500"
+                className={fieldClass}
                 required
               />
             </div>
 
             {/* Last Name */}
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Last Name*</label>
+            <div className="mb-5">
+              <label className={labelClass}>Last Name*</label>
               <input
                 type="text"
                 name="last_name"
                 value={formData.last_name}
                 onChange={handleChange}
-                className="w-full border rounded-lg p-4 focus:outline-none focus:border-blue-500"
+                className={fieldClass}
                 required
               />
             </div>
 
             {/* Phone Number */}
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Phone Number*</label>
+            <div className="mb-5">
+              <label className={labelClass}>Phone Number*</label>
               <input
                 type="text"
                 name="phone_number"
@@ -191,33 +192,33 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 placeholder="10 digits only"
                 maxLength="10"
-                className="w-full border rounded-lg p-4 focus:outline-none focus:border-blue-500"
+                className={fieldClass}
                 required
               />
             </div>
 
             {/* Institute */}
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Institute*</label>
+            <div className="mb-5">
+              <label className={labelClass}>Institute*</label>
               <input
                 type="text"
                 name="institute"
                 value={formData.institute}
                 onChange={handleChange}
                 placeholder="Full name of your Institute/Organization"
-                className="w-full border rounded-lg p-4 focus:outline-none focus:border-blue-500"
+                className={fieldClass}
                 required
               />
             </div>
 
             {/* Department */}
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Department*</label>
+            <div className="mb-5">
+              <label className={labelClass}>Department*</label>
               <select
                 name="department"
                 value={formData.department}
                 onChange={handleChange}
-                className="w-full border rounded-lg p-4 focus:outline-none focus:border-blue-500"
+                className={fieldClass}
                 required
               >
                 <option value="">Select Department</option>
@@ -230,27 +231,27 @@ export default function RegisterPage() {
             </div>
 
             {/* Location */}
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Location*</label>
+            <div className="mb-5">
+              <label className={labelClass}>Location*</label>
               <input
                 type="text"
                 name="location"
                 value={formData.location}
                 onChange={handleChange}
                 placeholder="Place/City"
-                className="w-full border rounded-lg p-4 focus:outline-none focus:border-blue-500"
+                className={fieldClass}
                 required
               />
             </div>
 
             {/* State */}
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">State*</label>
+            <div className="mb-5">
+              <label className={labelClass}>State*</label>
               <select
                 name="state"
                 value={formData.state}
                 onChange={handleChange}
-                className="w-full border rounded-lg p-4 focus:outline-none focus:border-blue-500"
+                className={fieldClass}
                 required
               >
                 {STATE_CHOICES.map((choice) => (
@@ -263,14 +264,12 @@ export default function RegisterPage() {
 
             {/* How did you hear about us */}
             <div className="mb-6">
-              <label className="block text-gray-700 mb-2">
-                How did you hear about us?*
-              </label>
+              <label className={labelClass}>How did you hear about us?*</label>
               <select
                 name="how_did_you_hear_about_us"
                 value={formData.how_did_you_hear_about_us}
                 onChange={handleChange}
-                className="w-full border rounded-lg p-4 focus:outline-none focus:border-blue-500"
+                className={fieldClass}
                 required
               >
                 <option value="">Select Option</option>
@@ -286,7 +285,7 @@ export default function RegisterPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-blue-500 text-white py-4 rounded-lg hover:bg-blue-600 disabled:opacity-50 font-semibold"
+              className="w-full bg-blue-500 text-white py-3 min-h-12 rounded-lg hover:bg-blue-600 disabled:opacity-50 font-medium text-base"
             >
               {loading ? "Registering..." : "Register"}
             </button>
