@@ -41,7 +41,8 @@ export default function Navbar() {
         {/* Hamburger menu */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden focus:outline-none"
+          className="md:hidden focus:outline-none p-2 -mr-2"
+          aria-label="Toggle menu"
         >
           <svg
             className="w-6 h-6"
@@ -90,7 +91,8 @@ export default function Navbar() {
           <div className="relative" ref={profileDropdownRef}>
             <button
               onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-              className="flex items-center gap-2 bg-white rounded-full w-10 h-10 justify-center hover:bg-gray-200 transition"
+              className="flex items-center gap-2 bg-white rounded-full w-12 h-12 justify-center hover:bg-gray-200 transition"
+              aria-label="Profile menu"
             >
               <svg
                 className="w-6 h-6 text-gray-600"
@@ -160,7 +162,7 @@ export default function Navbar() {
           <Link
             to="/"
             onClick={() => setMenuOpen(false)}
-            className="block text-lg font-semibold py-2 hover:text-gray-300"
+            className="block text-lg font-semibold py-3 hover:text-gray-300"
           >
             Home
           </Link>
@@ -168,7 +170,7 @@ export default function Navbar() {
           <Link
             to="/statistics/public"
             onClick={() => setMenuOpen(false)}
-            className="block text-base py-2 hover:text-gray-300 transition-colors"
+            className="block text-base py-3 hover:text-gray-300 transition-colors"
           >
             Workshop Statistics
           </Link>
@@ -178,14 +180,14 @@ export default function Navbar() {
               <Link
                 to="/statistics/public"
                 onClick={() => setMenuOpen(false)}
-                className="block text-base py-2 hover:text-gray-300 transition-colors"
+                className="block text-base py-3 hover:text-gray-300 transition-colors"
               >
                 Team Statistics
               </Link>
               <Link
                 to="/workshops"
                 onClick={() => setMenuOpen(false)}
-                className="block text-base py-2 hover:text-gray-300 transition-colors"
+                className="block text-base py-3 hover:text-gray-300 transition-colors"
               >
                 Workshop Status
               </Link>
@@ -193,13 +195,13 @@ export default function Navbar() {
           )}
 
           {/* Profile Section */}
-          <div className="border-t border-gray-500 pt-3 mt-3 pb-3">
+          <div className="border-t border-gray-500 pt-4 mt-4 pb-4">
             {isAuthenticated ? (
               <>
                 <Link
                   to="/profile"
                   onClick={() => setMenuOpen(false)}
-                  className="flex items-center gap-2 py-1 px-0 hover:text-gray-300 transition-colors"
+                  className="flex items-center gap-3 py-3 px-0 hover:text-gray-300 transition-colors"
                 >
                   <svg
                     className="w-7 h-7 bg-white rounded-full p-1 text-gray-600 flex-shrink-0"
@@ -208,13 +210,14 @@ export default function Navbar() {
                   >
                     <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
                   </svg>
+                  <span>Profile</span>
                 </Link>
                 <button
                   onClick={() => {
                     handleLogout();
                     setMenuOpen(false);
                   }}
-                  className="w-full text-left text-base py-2 px-0 hover:text-gray-300 transition-colors"
+                  className="w-full text-left text-base py-3 px-0 hover:text-gray-300 transition-colors"
                 >
                   Logout
                 </button>
@@ -224,14 +227,14 @@ export default function Navbar() {
                 <Link
                   to="/login"
                   onClick={() => setMenuOpen(false)}
-                  className="block text-base py-2 px-0 hover:text-gray-300 transition-colors"
+                  className="block text-base py-3 px-0 hover:text-gray-300 transition-colors"
                 >
                   Login
                 </Link>
                 <Link
                   to="/register"
                   onClick={() => setMenuOpen(false)}
-                  className="block text-base py-2 px-0 hover:text-gray-300 transition-colors"
+                  className="block text-base py-3 px-0 hover:text-gray-300 transition-colors"
                 >
                   Register
                 </Link>
