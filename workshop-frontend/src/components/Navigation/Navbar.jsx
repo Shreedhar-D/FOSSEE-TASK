@@ -83,12 +83,6 @@ export default function Navbar() {
               >
                 Workshop Status
               </Link>
-              <Link
-                to="/workshop/propose"
-                className="text-white hover:text-gray-300 transition"
-              >
-                Workshop Types
-              </Link>
             </>
           )}
 
@@ -194,13 +188,6 @@ export default function Navbar() {
                 className="block text-base py-2 hover:text-gray-300 transition-colors"
               >
                 Workshop Status
-              </Link>
-              <Link
-                to="/workshop/propose"
-                onClick={() => setMenuOpen(false)}
-                className="block text-base py-2 hover:text-gray-300 transition-colors"
-              >
-                Workshop Types
               </Link>
             </>
           )}

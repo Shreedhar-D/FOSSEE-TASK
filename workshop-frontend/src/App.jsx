@@ -9,7 +9,6 @@ import StatisticsPage from "./pages/StatisticsPage";
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
 import PasswordChangePage from "./pages/PasswordChangePage";
-import ProposePage from "./pages/ProposePage";
 import { usePageTitle } from "./hooks/usePageTitle";
 
 function AppRoutes() {
@@ -47,16 +46,6 @@ function AppRoutes() {
             <PrivateRoute>
               <Layout>
                 <WorkshopDetailsPage />
-              </Layout>
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/workshop/propose"
-          element={
-            <PrivateRoute>
-              <Layout>
-                <ProposePage />
               </Layout>
             </PrivateRoute>
           }
