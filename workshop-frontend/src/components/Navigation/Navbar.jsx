@@ -72,19 +72,19 @@ export default function Navbar() {
           {isAuthenticated && (
             <>
               <Link
-                to="/"
+                to="/statistics/public"
                 className="text-white hover:text-gray-300 transition"
               >
                 Team Statistics
               </Link>
               <Link
-                to="/"
+                to="/workshops"
                 className="text-white hover:text-gray-300 transition"
               >
                 Workshop Status
               </Link>
               <Link
-                to="/"
+                to="/workshop/propose"
                 className="text-white hover:text-gray-300 transition"
               >
                 Workshop Types
@@ -182,21 +182,21 @@ export default function Navbar() {
           {isAuthenticated && (
             <>
               <Link
-                to="/"
+                to="/statistics/public"
                 onClick={() => setMenuOpen(false)}
                 className="block text-base py-2 hover:text-gray-300 transition-colors"
               >
                 Team Statistics
               </Link>
               <Link
-                to="/"
+                to="/workshops"
                 onClick={() => setMenuOpen(false)}
                 className="block text-base py-2 hover:text-gray-300 transition-colors"
               >
                 Workshop Status
               </Link>
               <Link
-                to="/"
+                to="/workshop/propose"
                 onClick={() => setMenuOpen(false)}
                 className="block text-base py-2 hover:text-gray-300 transition-colors"
               >

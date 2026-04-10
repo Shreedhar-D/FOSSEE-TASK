@@ -1,8 +1,7 @@
-// import { toast } from 'react-toastify';
+// Keep notification helpers available even when toast UI is disabled.
+const noop = () => {};
 
-// export const showSuccess = (message) => toast.success(message);
-// export const showError = (message) => toast.error(message);
-// export const showInfo = (message) => toast.info(message);
-// export const showWarning = (message) => toast.warning(message);
-
-// Silent the popup messages
+export const showSuccess = noop;
+export const showError = noop;
+export const showInfo = noop;
+export const showWarning = noop;

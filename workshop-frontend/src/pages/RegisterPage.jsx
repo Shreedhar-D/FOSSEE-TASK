@@ -41,13 +41,33 @@ export default function RegisterPage() {
     }
     setLoading(true);
     try {
-      await api.post("/auth/register/", formData);
+      const payload = {
+        username: formData.username,
+        email: formData.email,
+        password: formData.password1,
+        confirm_password: formData.password2,
+        title: formData.title,
+        first_name: formData.first_name,
+        last_name: formData.last_name,
+        phone_number: formData.phone_number,
+        institute: formData.institute,
+        department: formData.department,
+        location: formData.location,
+        state: formData.state,
+        how_did_you_hear_about_us: formData.how_did_you_hear_about_us,
+      };
+
+      await api.post("/register/", payload, {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      });
       showSuccess(
         "Registration successful! Please check your email to activate your account.",
       );
       navigate("/login");
     } catch (error) {
-      showError(error.response?.data?.message || "Registration failed");
+      showError("Registration failed");
     } finally {
       setLoading(false);
     }
