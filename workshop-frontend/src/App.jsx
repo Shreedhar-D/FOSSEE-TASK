@@ -1,22 +1,25 @@
+import { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrivateRoute from "./components/Auth/PrivateRoute";
-import Layout from "./components/Navigation/Layout";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import WorkshopListPage from "./pages/WorkshopListPage";
-import WorkshopDetailsPage from "./pages/WorkshopDetailsPage";
-import StatisticsPage from "./pages/StatisticsPage";
-import HomePage from "./pages/HomePage";
-import ProfilePage from "./pages/ProfilePage";
-import PasswordChangePage from "./pages/PasswordChangePage";
+import LoadingSpinner from "./components/Common/LoadingSpinner";
 import { usePageTitle } from "./hooks/usePageTitle";
+
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage"));
+const WorkshopListPage = lazy(() => import("./pages/WorkshopListPage"));
+const WorkshopDetailsPage = lazy(() => import("./pages/WorkshopDetailsPage"));
+const StatisticsPage = lazy(() => import("./pages/StatisticsPage"));
+const HomePage = lazy(() => import("./pages/HomePage"));
+const ProfilePage = lazy(() => import("./pages/ProfilePage"));
+const PasswordChangePage = lazy(() => import("./pages/PasswordChangePage"));
+const Layout = lazy(() => import("./components/Navigation/Layout"));
 
 function AppRoutes() {
   // Hook to update page title on route change
   usePageTitle();
 
   return (
-    <>
+    <Suspense fallback={<LoadingSpinner />}>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
@@ -79,7 +82,7 @@ function AppRoutes() {
           }
         />
       </Routes>
-    </>
+    </Suspense>
   );
 }
 
