@@ -146,10 +146,7 @@ Note: The statistics view opens the existing Django-based statistics dashboard.
 
 A short walkthrough video is included below:
 
-<video width="100%" controls>
-  <source src="screenshots/demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+Watch Demo: [Click here](screenshots/demo.mp4)
 
 ## Submission Checklist
 - [x] Code is readable and well-structured
