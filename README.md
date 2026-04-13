@@ -2,27 +2,30 @@
 
 ## Overview
 
-This project is a UI/UX improvement of an existing Workshop Booking System.
-The frontend is in React (Vite) and the backend is in Django.
+This project improves the usability and mobile experience of an existing Workshop Booking System without changing backend logic
+ 
+The original interface had issues with navigation clarity, mobile responsiveness, and form usability. My goal was to solve these practical problems by redesigning the frontend with a mobile-first approach, clearer user flows, and consistent UI patterns.
+ 
+Rather than just improving visuals, the focus was on making key user actions—like logging in, browsing workshops, and checking status—faster, clearer, and more intuitive.
 
-My main focus was to make the system easier to use, especially on mobile, while keeping the backend flow unchanged.
+## Key Improvements (Before vs After)
+ 
+| Problem in Original UI          | Improvement Made                                   |
+| ------------------------------- | -------------------------------------------------- |
+| Poor mobile usability           | Mobile-first responsive layout                     |
+| Confusing navigation flow       | Simplified navigation with hamburger menu          |
+| Inconsistent form structure     | Standardized and cleaner forms                     |
+| Lack of feedback during actions | Added loading states and API feedback              |
+| Important details not visible   | Highlighted workshop info (date, status, location) |
 
 ## What Was Improved
 
-- Mobile-first layout for better readability on small screens
-- Clearer navigation flow between key pages
-- Cleaner and more consistent form design
-- Better visibility of important workshop details (date, location, status)
-- Loading feedback during API calls
-- Route-based lazy loading to reduce initial load time
-
-## UI/UX Improvements
-
-- Mobile-first responsive design across major pages
-- Improved navigation with a hamburger menu on smaller screens
-- Better form usability with clearer field structure and validation feedback
-- More consistent spacing and layout patterns
-- Better loading and error-state handling
+- Mobile-first layout for better usability on smaller screens
+- Simplified navigation across core pages
+- Consistent form design and validation feedback
+- Improved visibility of important workshop details
+- Loading indicators and error handling for better user feedback
+- Route-based lazy loading for improved performance
 
 ## Tech Stack
 
@@ -40,13 +43,17 @@ My main focus was to make the system easier to use, especially on mobile, while 
 
 ## Architecture
 
-React handles the UI and user interactions.
-Django handles authentication, backend logic, and database access.
-Axios is used to call backend APIs from the frontend.
-
-Flow:
-User → React Frontend → Django Backend → Database → Response → UI Update
-
+The system follows a clean separation of concerns:
+ 
+- React handles UI and user interactions
+- Django manages backend logic, authentication, and database operations
+- Axios is used for communication between frontend and backend
+ 
+**Flow:**
+ 
+```
+User → Frontend (React) → Backend (Django) → Database → Response → UI Update
+```
 ## Reasoning
 
 ### 1. What design principles guided your improvements?
@@ -144,9 +151,7 @@ Note: The statistics view opens the existing Django-based statistics dashboard.
 
 ## Project Demo
 
-A short walkthrough video is included below:
-
-Watch Demo: [Click here](screenshots/demo.mp4)
+**Demo Video:** [Link to Demo Video](https://drive.google.com/file/d/1O4cMyfbA11HPJF-zO2q1aX_402nx5O1z/view?usp=sharing)
 
 ## Submission Checklist
 - [x] Code is readable and well-structured
